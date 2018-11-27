@@ -1,0 +1,61 @@
+def main():
+    pinCode = ['1234', "1111", "9999", "2222", "5555"] #data of the account holders
+    accountHoldersName = [" Marshall Mathers ", "J.Cole", 'Nicki Minaj', "Kendrick Lamar", "Cardi B"]
+    accountNumber = ['1353', '199281', "182838", "185597", "667432"]
+    balance = [5670000000, 2185262473, 23423541871, 27242345638, 91424342820]
+
+    flag = False
+    for i in range (0,999999999): #so the loop runs almost infinit many times
+        print("""
+    \t\t=== processing data, please wait ===
+""")
+        inputName = input("Enter Your Name: ")
+        inputName = inputName.lower()
+        inputPin = 0000 #if pin is wrong it will be use as this is assigned before reference.
+        index = 0 #if pin is wrong it will be use as this is assigned before reference.
+        for name in accountHoldersName:
+            count = 0
+            if name == inputName:
+                index = count #index of anme is stored and if the pin of that index is same user will be given access to the account.
+                inputPin = input("\nEnter Pin Number: ")
+            count += 1
+
+        if inputPin == pinCode[index]:
+            flag = True
+        else:
+            print("Invalid data.")
+            flag = False
+            continue
+        if flag == True:
+            print("\nYour account number is: ",accountNumber[index])
+            print("Your account balance is: $.", balance[index])
+            drawOrDeposit = input("\nDo you want to draw or deposit cash (draw/deposit/no): ")
+            if drawOrDeposite == "draw":
+                amount = input("\nEnter the amount you want to draw: ")
+                try: #Exception handling
+                    amount = int(amount)
+                    if amount > balance[index]:
+                        raise
+                except:
+                    print("invalid amount.")
+                    continue
+                remainingBalalnce = balance[index] - amount #subtracting the dispensed amount.
+                balance.remove(balance[index]) #removing the old amount from the list and adding the new list after draw.
+                balance.insert(index,remainingBalalnce)
+                availableBalance = print("\nYour available balance is: ",remainingBalalnce)
+            elif drawOrDeposit == "deposit":
+                amount = input("Enter the amount you want to deposit: ")
+                try:
+                    amount = int(amount)
+                    if amount > balance[index]:
+                        raise
+                except:
+                    print("invalid amount.")
+                    continue
+                remainingBalance = balance[index] + amount #adding the deposited amount.
+                balance.remove(balance[index])#removing the old amount from the list and adding the new list after draw.
+                balance.insert(index,remainingBalalnce)
+                availableBalance = print("Your available balance is: ",remainingBalalnce)
+            print("\n\nThank you for using this ATM Service. \n  ")
+
+main()
