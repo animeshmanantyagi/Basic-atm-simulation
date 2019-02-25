@@ -5,18 +5,18 @@ def main():
     balance = [5670000000, 2185262473, 23423541871, 27242345638, 91424342820]
 
     flag = False
-    for i in range (0,999999999): #so the loop runs almost infinit many times
+    for i in range (0,999999999): #so the loop runs for a long time
         print("""
     \t\t=== processing data, please wait ===
 """)
         inputName = input("Enter Your Name: ")
-        inputName = inputName.lower()
-        inputPin = 0000 #if pin is wrong it will be use as this is assigned before reference.
-        index = 0 #if pin is wrong it will be use as this is assigned before reference.
+        inputName = inputName.lower(
+        inputPin = 0000 #if pin is wrong it will be useless as this is assigned before reference
+        index = 0 
         for name in accountHoldersName:
             count = 0
             if name == inputName:
-                index = count #index of anme is stored and if the pin of that index is same user will be given access to the account.
+                index = count #index of a name is stored and if the pin of that index is same user will be given access to the account.
                 inputPin = input("\nEnter Pin Number: ")
             count += 1
 
@@ -39,8 +39,8 @@ def main():
                 except:
                     print("invalid amount.")
                     continue
-                remainingBalalnce = balance[index] - amount #subtracting the dispensed amount.
-                balance.remove(balance[index]) #removing the old amount from the list and adding the new list after draw.
+                remainingBalalnce = balance[index] - amount #subtracting the dispensed amount
+                balance.remove(balance[index]) #removing the old amount from the list and adding the new list after draw
                 balance.insert(index,remainingBalalnce)
                 availableBalance = print("\nYour available balance is: ",remainingBalalnce)
             elif drawOrDeposit == "deposit":
@@ -52,7 +52,7 @@ def main():
                 except:
                     print("invalid amount.")
                     continue
-                remainingBalance = balance[index] + amount #adding the deposited amount.
+                remainingBalance = balance[index] + amount #adding the deposited amount
                 balance.remove(balance[index])#removing the old amount from the list and adding the new list after draw.
                 balance.insert(index,remainingBalalnce)
                 availableBalance = print("Your available balance is: ",remainingBalalnce)
